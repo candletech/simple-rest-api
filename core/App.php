@@ -4,6 +4,7 @@ class App {
 
     protected $controller = 'Home';
     protected $method = 'index';
+    protected $request = 'get';
     protected $params = array();
 
     public function __construct() {
@@ -18,10 +19,11 @@ class App {
         require_once 'controller/' . $this->controller . '.php';
 
         $this->controller = new $this->controller;
+        $this->request = strtolower($_SERVER['REQUEST_METHOD']);
 
         if(isset($url[1])) {
-            if(method_exists($this->controller, $url[1])) {
-                $this->method = $url[1];
+            if(method_exists($this->controller, $url[1] . "_" .$this->request)) {
+                $this->method = $url[1] . "_" .$this->request;
                 unset($url[1]);
             }
         }
