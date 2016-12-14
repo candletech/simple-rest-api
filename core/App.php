@@ -27,6 +27,7 @@ class App {
 
         $this->controller = new $this->controller;
         $this->request = strtolower($_SERVER['REQUEST_METHOD']);
+        $this->method .= "_" .$this->request;
 
         if(isset($url[1])) {
             if(method_exists($this->controller, $url[1] . "_" .$this->request)) {
