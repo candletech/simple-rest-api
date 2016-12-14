@@ -3,6 +3,6 @@
 class Auth extends Controller {
 
     public function login_post() {
-        echo 'auth/login';
+        var_dump($this->getPostBody());
     }
 }
