@@ -9,7 +9,14 @@ class App {
 
     public function __construct() {
         $url = $this->parseUrl();
-        $url[0] = ucfirst($url[0]);
+
+        if(isset($url[0])) {
+            $url[0] = ucfirst(strtolower($url[0]));
+        }
+
+        if(isset($url[1])) {
+            $url[1] = strtolower($url[1]);
+        }
 
         if(file_exists('controller/' . $url[0] . '.php')) {
             $this->controller = $url[0];
