@@ -8,6 +8,10 @@ class App {
     protected $params = array();
 
     public function __construct() {
+        header('Content-Type: application/json');
+
+        $data = array();
+
         $url = $this->parseUrl();
 
         if(isset($url[0])) {
@@ -38,7 +42,18 @@ class App {
 
         $this->params = $url ? array_values($url) : array();
 
-        call_user_func_array([$this->controller, $this->method], $this->params);
+        if(is_subclass_of($this->controller, 'AuthorizedController')) {
+            $auth = call_user_func_array([$this->controller, 'isAuthorized'], $this->params);
+            if($auth !== true) {
+                $data["msg"] = $auth;
+            }
+        }
+
+        if(count($data) == 0) {
+            $data = (call_user_func_array([$this->controller, $this->method], $this->params));
+        }
+
+        die(json_encode((object)$data));
     }
 
     public function parseUrl() {
