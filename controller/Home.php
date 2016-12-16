@@ -1,8 +1,8 @@
 <?php
 
-class Home extends Controller {
+class Home extends AuthorizedController {
 
     public function index_get() {
-
+        return 'valid';
     }
 }
