@@ -1,0 +1,12 @@
+{
+    "name": "candletech/simple-rest-api",
+    "require": {
+        "firebase/php-jwt": "^4.0"
+    },
+    "authors": [
+        {
+            "name": "Juliano Silva",
+            "email": "juliano.silva2011@gmail.com"
+        }
+    ]
+}

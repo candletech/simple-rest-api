@@ -1,2 +1,5 @@
 .idea/
 db.ini
+jwt.ini
+/vendor/
+composer.lock
