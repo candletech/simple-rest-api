@@ -6,7 +6,7 @@ class AuthorizedController extends Controller {
         $token = apache_request_headers()['Authorization'];
 
         if(!JWTHelper::decode($token)) {
-            throw new InvalidJwtException;
+            throw new Exception;
         }
     }
 
